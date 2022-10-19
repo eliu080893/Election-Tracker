@@ -8,9 +8,7 @@ class City extends Component{
     }
 
     handleClick(event) {
-        let word = String(this.props.custom)
-        alert(`${this.props.stateId} has been clicked! ${word}`)
-
+        event.stopPropagation();
     }
 
     render() {
@@ -18,7 +16,7 @@ class City extends Component{
             <div className='city' statename={this.props.stateId} onClick={ (e)=> this.props.handleClickChangeWinner(e) }>
                 {this.props.stateId}
                 {/* <p className='city_p'>{this.props.stateId}</p> */}
-                <p>{this.props.electoral_votes} - {this.props.winner}</p>
+                <p onClick={this.handleClick}>{this.props.electoral_votes} - {this.props.winner}</p>
             </div>
         )
     }

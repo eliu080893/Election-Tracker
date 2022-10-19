@@ -109,7 +109,7 @@ class CityContainer extends Component {
         let stateArray = [];
 
         for(const key in this.state) {
-            // if (key !== 'custom') {
+            if (key !== 'custom') {
                 stateArray.push(
                 <City
                 key={key}
@@ -121,7 +121,7 @@ class CityContainer extends Component {
                 handleClickChangeWinner={this.handleClickChangeWinner}
                 /> 
                 )
-            // }
+            }
         }
 
         let customMode = String(this.state.custom)

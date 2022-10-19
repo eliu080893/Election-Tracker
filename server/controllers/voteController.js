@@ -4,8 +4,9 @@ const fetch = (...args) =>
 
 const voteController = {}
 
-let dataURL = "https://static01.nyt.com/elections-assets/2020/data/api/2020-11-03/national-map-page/national/president.json"
+const Vote = require('../models/electionModels.js');
 
+let dataURL = "https://static01.nyt.com/elections-assets/2020/data/api/2020-11-03/national-map-page/national/president.json"
 
 // Reach out to API to get the votes as an object. 
 voteController.getVotes = (req, res, next) => {
@@ -84,5 +85,53 @@ voteController.organizeVotes = (req, res, next) => {
 
     return next();
 };
+
+// The post custom map function should post a custom map with a file name, and state object. Both are required.
+voteController.postMap = async (req, res, next) => {
+
+    let incomingData = req.body;
+    console.log(req.body.name);
+
+    try {
+        let dbResponse = await Vote.create(incomingData)
+        res.locals.postResponse = dbResponse;
+        res.locals.name = req.body.name;
+        return next()
+    }
+    catch(err) {
+        return next({
+            log:'Error in voteController.postVotes. Cannot create your map into mongo DB database',
+            message: {err: err}
+        })
+    }
+}
+
+// The delete custom map function should check to see if the inputted map name exists. If it does, delete it. If it doesn't respond with an error.
+voteController.deleteMap = async (req, res, next) => {
+
+    let incomingData = req.body.name;
+
+    try {
+        let exist = await Vote.find({name: incomingData});
+        if (exist.length === 0) {
+            return next({
+                log: 'Error: the file you are looking for does not exist',
+                message: 'Please input an existing file name.'
+            })
+        }
+
+        let response = await Vote.findOneAndDelete({name: incomingData});
+        res.locals.deleteResponse = response;
+        res.locals.name = incomingData;
+        return next()
+    }
+    catch(err) {
+        return next({
+            log:'Error in voteController.postVotes. Cannot create your map into mongo DB database',
+            message: {err: err}
+        })
+    }
+
+}
 
 module.exports = voteController;
