@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import Button from './Button.jsx';
 import City from './City.jsx'
 import Reset from './Reset.jsx';
+import SaveButton from './SaveButton.jsx';
 
 // function CityContainer() {
 
@@ -30,11 +31,12 @@ class CityContainer extends Component {
         this.handleMapReset = this.handleMapReset.bind(this)
         this.handleClickCustom = this.handleClickCustom.bind(this)
         this.handleClickChangeWinner = this.handleClickChangeWinner.bind(this)
+        this.handlePostRequest = this.handlePostRequest.bind(this)
 
         this.state = {}
     }
 
-
+    /////////////////////// HELPER FUNCTIONS FOR EASE OF USE ///////////////////////
     resetTheBoard(){
         fetch('/api')
         .then( res => res.json())
@@ -48,6 +50,7 @@ class CityContainer extends Component {
         })
     }
 
+    //////////////////////////////////  EVENT HANDLERS //////////////////////////////////////
     handleMapReset() {
         this.resetTheBoard()
     }
@@ -100,6 +103,27 @@ class CityContainer extends Component {
         }
     }
 
+    handlePostRequest(){
+        alert('Trying to save custom map')
+        
+        const postObj = {
+            name: Math.floor(Math.random()*15).toString(),
+            state: this.state
+        }
+
+        fetch('/api',
+        {
+            method:'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(postObj)
+        })
+        .catch(err => {
+            this.setState( {hasError: true})
+        })
+
+    }
+
+    //////////////////////////////////  LIFECYCLE METHODS //////////////////////////////////////
     componentDidMount(){
         this.resetTheBoard()
     }
@@ -129,11 +153,15 @@ class CityContainer extends Component {
         return ( 
             <div>
                 <div id='customButton'>
-            <Button handleClick={this.handleClickCustom}/>
+                    <Button handleClick={this.handleClickCustom}/>
                 </div>
 
-                <div id='customButton'>
-            <Reset handleClick={this.handleMapReset}/>
+                <div id='resetButton'>
+                     <Reset handleClick={this.handleMapReset}/>
+                </div>
+
+                <div id='resetButton'>
+                      <SaveButton handleClick={this.handlePostRequest}/>
                 </div>
 
                 <h1>Custom Mode: {customMode} </h1>
