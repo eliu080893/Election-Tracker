@@ -1,0 +1,23 @@
+body {
+    background: lightblue;
+}
+
+#cityContainer {
+    background-color: beige;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+
+}
+
+.city {
+    width: 100px;
+    height: 100px;
+    border: red solid 1px;
+
+    p {
+        font-size: 32px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+}

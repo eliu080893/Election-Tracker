@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import CityContainer from './CityContainer.jsx';
 
-export class App extends Component {
+class App extends Component {
     constructor(props) {
         super(props)
     }
@@ -9,8 +10,10 @@ export class App extends Component {
         return (
             <div>
                 <p>Hello World! Let's start with this App.</p>
+                <CityContainer />
             </div>
         )
     }
 }
 
+export default App;

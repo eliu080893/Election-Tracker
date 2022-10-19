@@ -13,6 +13,14 @@ module.exports = {
       static: {
         directory: path.resolve(__dirname, 'dist'),
         publicPath: '/'
+      },
+      hot: true,
+      port: 8080,
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3000',
+          secure: false
+         }
       }
     },
     output: { path: path.resolve(__dirname, "dist") },
@@ -29,7 +37,7 @@ module.exports = {
           }
         },
         {
-          test: /\.s[ac]ss$/,
+          test: /\.s[a|c]ss$/,
           use: ['style-loader', 'css-loader', 'sass-loader']
         }
 
