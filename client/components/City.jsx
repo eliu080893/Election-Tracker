@@ -10,16 +10,15 @@ class City extends Component{
     handleClick(event) {
         let word = String(this.props.custom)
         alert(`${this.props.stateId} has been clicked! ${word}`)
-        if (this.props.custom === true) {
-            console.log('clicked while custom mode')
-        }
+
     }
 
     render() {
         return (
-            <div className='city' onClick={this.handleClick}>
-                <p className='city_p'>{this.props.stateId}</p>
-                <p>{this.props.electoral_votes}</p>
+            <div className='city' statename={this.props.stateId} onClick={ (e)=> this.props.handleClickChangeWinner(e) }>
+                {this.props.stateId}
+                {/* <p className='city_p'>{this.props.stateId}</p> */}
+                <p>{this.props.electoral_votes} - {this.props.winner}</p>
             </div>
         )
     }
