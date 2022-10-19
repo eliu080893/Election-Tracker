@@ -1,35 +1,14 @@
 import React, { Component, useState, useEffect } from 'react';
-import Button from './Button.jsx';
+import ButtonContainer from './ButtonContainer.jsx';
 import City from './City.jsx'
-import Reset from './Reset.jsx';
-import SaveButton from './SaveButton.jsx';
 
-// function CityContainer() {
-
-//     const [state, setState] = useState();
-    
-//     useEffect( () => {
-//         fetch('/api')
-//             .then( res => res.json())
-//             .then( res => {
-//                 console.log(res)
-//                 setState(res)
-//             })
-//     }, [])
-
-//     return ( 
-//         <div id='cityContainer'>
-//             <City />
-//         </div>
-//     )
-// }
 
 class CityContainer extends Component {
     constructor(props){
         super(props)
 
-        this.handleMapReset = this.handleMapReset.bind(this)
         this.handleClickCustom = this.handleClickCustom.bind(this)
+        this.handleMapReset = this.handleMapReset.bind(this)
         this.handleClickChangeWinner = this.handleClickChangeWinner.bind(this)
         this.handlePostRequest = this.handlePostRequest.bind(this)
 
@@ -51,10 +30,6 @@ class CityContainer extends Component {
     }
 
     //////////////////////////////////  EVENT HANDLERS //////////////////////////////////////
-    handleMapReset() {
-        this.resetTheBoard()
-    }
-
 
     handleClickCustom(){
         if (this.state.custom === false) {
@@ -62,6 +37,10 @@ class CityContainer extends Component {
         } else {
             this.setState( {...this.state, custom: false} )
         }
+    }
+
+    handleMapReset() {
+        this.resetTheBoard()
     }
 
     handleClickChangeWinner(event){
@@ -104,7 +83,7 @@ class CityContainer extends Component {
     }
 
     handlePostRequest(){
-        alert('Trying to save custom map')
+        // alert('Trying to save custom map')
         
         const postObj = {
             name: Math.floor(Math.random()*15).toString(),
@@ -117,11 +96,13 @@ class CityContainer extends Component {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(postObj)
         })
-        .catch(err => {
-            this.setState( {hasError: true})
-        })
+        // .catch(err => {
+        //     this.setState( {hasError: true})
+        // })
 
     }
+
+
 
     //////////////////////////////////  LIFECYCLE METHODS //////////////////////////////////////
     componentDidMount(){
@@ -152,18 +133,12 @@ class CityContainer extends Component {
 
         return ( 
             <div>
-                <div id='customButton'>
-                    <Button handleClick={this.handleClickCustom}/>
-                </div>
 
-                <div id='resetButton'>
-                     <Reset handleClick={this.handleMapReset}/>
-                </div>
-
-                <div id='resetButton'>
-                      <SaveButton handleClick={this.handlePostRequest}/>
-                </div>
-
+                <ButtonContainer 
+                    handleClickCustom={this.handleClickCustom} 
+                    handleMapReset={this.handleMapReset}
+                    handlePostRequest={this.handlePostRequest}
+                />
                 <h1>Custom Mode: {customMode} </h1>
 
                 <div id='cityContainer'>

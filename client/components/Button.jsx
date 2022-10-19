@@ -9,7 +9,7 @@ class Button extends Component {
 
     render() {
         return (
-            <button onClick={ () => {this.props.handleClick()} }>
+            <button onClick={this.props.handleClick }>
                 Custom Mode
             </button>
         )

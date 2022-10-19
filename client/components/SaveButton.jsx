@@ -9,7 +9,7 @@ class SaveButton extends Component {
 
     render() {
         return (
-            <button onClick={ () => {this.props.handleClick()} }>
+            <button onClick={ this.props.handleClick }>
                 Save Custom Map
             </button>
         )
