@@ -110,12 +110,13 @@ voteController.postMap = async (req, res, next) => {
 voteController.deleteMap = async (req, res, next) => {
 
     let incomingData = req.body.name;
+    console.log('Deleting map name: ', incomingData)
 
     try {
         let exist = await Vote.find({name: incomingData});
         if (exist.length === 0) {
             return next({
-                log: 'Error: the file you are looking for does not exist',
+                log: 'Error: the file you are trying to delete does not exist',
                 message: 'Please input an existing file name.'
             })
         }

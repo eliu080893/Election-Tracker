@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import ButtonContainer from './ButtonContainer.jsx';
 import City from './City.jsx'
+import Scoreboard from './Scoreboard.jsx';
 
 
 class CityContainer extends Component {
@@ -11,6 +12,7 @@ class CityContainer extends Component {
         this.handleMapReset = this.handleMapReset.bind(this)
         this.handleClickChangeWinner = this.handleClickChangeWinner.bind(this)
         this.handlePostRequest = this.handlePostRequest.bind(this)
+        this.handleDeleteRequest = this.handleDeleteRequest.bind(this)
 
         this.state = {}
     }
@@ -24,9 +26,9 @@ class CityContainer extends Component {
             this.setState( {...this.state, custom: true } )
             console.log(this.state)
         })
-        .catch(err => {
-            this.setState( {hasError: true})
-        })
+        // .catch(err => {
+        //     this.setState( {hasError: true})
+        // })
     }
 
     //////////////////////////////////  EVENT HANDLERS //////////////////////////////////////
@@ -82,11 +84,10 @@ class CityContainer extends Component {
         }
     }
 
-    handlePostRequest(){
-        // alert('Trying to save custom map')
-        
+    handlePostRequest(name){
+    
         const postObj = {
-            name: Math.floor(Math.random()*15).toString(),
+            name: name,
             state: this.state
         }
 
@@ -96,16 +97,34 @@ class CityContainer extends Component {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(postObj)
         })
-        // .catch(err => {
-        //     this.setState( {hasError: true})
-        // })
+        .catch(err => {
+            console.log(err)
+        })
 
+    }
+
+    handleDeleteRequest(name){
+
+        const postObj = {
+            name: name,
+        }
+
+        fetch('/api',
+        {
+            method:'DELETE',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(postObj)
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
 
 
     //////////////////////////////////  LIFECYCLE METHODS //////////////////////////////////////
     componentDidMount(){
+        console.log('city container mounted')
         this.resetTheBoard()
     }
 
@@ -133,12 +152,13 @@ class CityContainer extends Component {
 
         return ( 
             <div>
-
                 <ButtonContainer 
                     handleClickCustom={this.handleClickCustom} 
                     handleMapReset={this.handleMapReset}
                     handlePostRequest={this.handlePostRequest}
+                    handleDeleteRequest={this.handleDeleteRequest}
                 />
+                <Scoreboard vote={this.state} />
                 <h1>Custom Mode: {customMode} </h1>
 
                 <div id='cityContainer'>

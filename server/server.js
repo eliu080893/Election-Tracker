@@ -15,11 +15,6 @@ app.get('/', (req,res) => {
     return res.status(200).sendFile(path.join(__dirname,'../src/index.html'))
 })
 
-
-app.get('/api/ping', (req,res) => {
-    res.status(200).json('pong')
-});
-
 app.use('/api', apiRouter);
 
 app.use( (req,res) => res.status(400).send('Unable to load page, as that pathfile does not exist.'));
