@@ -2,12 +2,36 @@ body {
     background: lightblue;
 }
 
-#cityContainer {
+#info_bar {
+    border: 1px blue solid;
+
+    #buttonContainer{
+        display: inline;
+        background-color: aqua;
+
+        button {
+            width: 100px;
+            height: 33px;
+        }
+    }
+
+    #scoreboard_area {
+        background-color: lightcoral;
+
+        #score_comp {
+            h3 {
+                border: 1px solid black; 
+                color: black;
+            }
+        }
+    }
+}
+
+#city_display {
     background-color: beige;
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;
-
 }
 
 .city {
@@ -23,14 +47,4 @@ body {
         margin-top: 0px;
         margin-bottom: 0px;
     }
-}
-
-#buttonContainer {
-    display: flex;
-    justify-content: space-between;
-}
-
-button {
-    width: 100px;
-    height: 33px;
 }

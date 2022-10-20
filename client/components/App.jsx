@@ -8,8 +8,8 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <p>Hello World! Let's start with this App.</p>
+            <div id='app'>
+                <h1 id='title'>Choose your own President!</h1>
                 <CityContainer />
             </div>
         )

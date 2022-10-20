@@ -6,6 +6,7 @@ const path = require('path');
 
 // Import the required router files
 const apiRouter = require(path.join(__dirname,'./routes/api.js'));
+const customRouter = require(path.join(__dirname,'./routes/custom.js'));
 
 // Allows for proper parsing of incoming JSON objects
 app.use(express.json());
@@ -16,6 +17,8 @@ app.get('/', (req,res) => {
 })
 
 app.use('/api', apiRouter);
+
+app.use('/custom', customRouter);
 
 app.use( (req,res) => res.status(400).send('Unable to load page, as that pathfile does not exist.'));
 

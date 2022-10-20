@@ -9,7 +9,7 @@ class Score extends Component {
 
     render() {
         return (
-            <div>
+            <div id='score_comp'>
                 <h3>{this.props.candidate}: {this.props.electoral_votes}</h3>
             </div>
         )

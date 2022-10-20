@@ -10,7 +10,7 @@ class DeleteButton extends Component {
     render() {
         return (
             <button onClick={this.props.handleClick }>
-                Delete button
+                Delete Custom Map
             </button>
         )
     }

@@ -7,22 +7,6 @@ class Scoreboard extends Component {
 
     }
 
-    updateScoreboard() {
-
-    }
-
-    componentDidUpdate(){
-
-        // console.log('Scoreboard updated')
-
-    }
-
-    componentDidMount() {
-
-        // console.log('Scoreboard mounted')
-
-    }
-
     render() {
 
         let data = this.props.vote;
@@ -46,7 +30,7 @@ class Scoreboard extends Component {
         }
 
         return (
-            <div>
+            <div id='scoreboard_area'>
                 {candidateArray}
             </div>
         )

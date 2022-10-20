@@ -12,6 +12,7 @@ class CityContainer extends Component {
         this.handleMapReset = this.handleMapReset.bind(this)
         this.handleClickChangeWinner = this.handleClickChangeWinner.bind(this)
         this.handlePostRequest = this.handlePostRequest.bind(this)
+        this.handleImportRequest = this.handleImportRequest.bind(this)
         this.handleDeleteRequest = this.handleDeleteRequest.bind(this)
 
         this.state = {}
@@ -84,13 +85,12 @@ class CityContainer extends Component {
         }
     }
 
+    // Save your custom map to the database
     handlePostRequest(name){
-    
         const postObj = {
             name: name,
             state: this.state
         }
-
         fetch('/api',
         {
             method:'POST',
@@ -100,11 +100,32 @@ class CityContainer extends Component {
         .catch(err => {
             console.log(err)
         })
+    }
+    
+    // Update to your custom map from the databse
+    handleImportRequest (name){
+
+        fetch(`/custom?name=${name}`)
+            .then( res => res.json())
+            .then( (res) => { 
+                console.log('got the custom map')
+                let newState = res.state;
+                newState.custom = true;
+
+                this.setState( (state) => {
+                    return newState
+                })
+
+            })
+            .catch( err => {
+                console.log('get custom map broke down on CC-L112')
+                console.log(err)
+            })
 
     }
 
+    // Delete your custom map from the database
     handleDeleteRequest(name){
-
         const postObj = {
             name: name,
         }
@@ -151,17 +172,20 @@ class CityContainer extends Component {
         let customMode = String(this.state.custom)
 
         return ( 
-            <div>
-                <ButtonContainer 
-                    handleClickCustom={this.handleClickCustom} 
-                    handleMapReset={this.handleMapReset}
-                    handlePostRequest={this.handlePostRequest}
-                    handleDeleteRequest={this.handleDeleteRequest}
-                />
-                <Scoreboard vote={this.state} />
+            <div id='city_container'>
+                <div id='info_bar'>
+                    <ButtonContainer 
+                        handleClickCustom={this.handleClickCustom} 
+                        handleMapReset={this.handleMapReset}
+                        handlePostRequest={this.handlePostRequest}
+                        handleImportRequest={this.handleImportRequest}
+                        handleDeleteRequest={this.handleDeleteRequest}
+                    />
+                    <Scoreboard vote={this.state} />
+                </div>
                 <h1>Custom Mode: {customMode} </h1>
 
-                <div id='cityContainer'>
+                <div id='city_display'>
                     {this.state.hasError ? <div>Error occured while fetching the data</div> : stateArray}
                 </div>
             </div>
