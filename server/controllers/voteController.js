@@ -78,7 +78,7 @@ voteController.organizeVotes = (req, res, next) => {
     })
     
     res.locals.data = stateObject;
-    console.log(Object.keys(stateObject));
+    // console.log(Object.keys(stateObject));
 
     //delete the raw data so it is not sent over in the response back to the client.
     delete res.locals.rawData;

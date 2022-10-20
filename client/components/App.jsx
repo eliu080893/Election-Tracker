@@ -9,7 +9,7 @@ class App extends Component {
     render() {
         return (
             <div id='app'>
-                <h1 id='title'>Choose your own President!</h1>
+                <h1 id='title'>Pick your President!</h1>
                 <CityContainer />
             </div>
         )

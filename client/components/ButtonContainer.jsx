@@ -13,7 +13,8 @@ class ButtonContainer extends Component {
             value: ''
         }
 
-        this.onChange = this.onChange.bind(this)
+        this.onChange = this.onChange.bind(this);
+        this.resetState = this.resetState.bind(this);
     }
 
     onChange(e) {
@@ -22,19 +23,30 @@ class ButtonContainer extends Component {
         })
     }
 
+    resetState() {
+        this.setState( (state) => {
+            return {value: 'test'}
+        })
+    }
+
     render() {
         return (
             <div id='buttonContainer'>
 
                 <div id='customButton'>
-                    <Button handleClick={ () => {this.props.handleClickCustom()} }/>
+                    <Button 
+                    handleClick={ () => {this.props.handleClickCustom()} }
+                    custom={this.props.custom}/>
                 </div>
+
+                <input type='text' onChange={this.onChange} placeholder="Name your custom map!" id="input_bar"/>
 
                 <div id='resetButton'>
-                    <Reset handleClick={ () => {this.props.handleMapReset()} }/>
+                    <Reset handleClick={ () => {
+                        this.props.handleMapReset();
+                        this.resetState();
+                    } }/>
                 </div>
-
-                <input type='text' onChange={this.onChange} placeholder="Name your custom map!"/>
 
                 <div id='saveButton'>
                     <SaveButton handleClick={ () => {this.props.handlePostRequest(this.state.value)} }/>

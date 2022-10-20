@@ -24,8 +24,7 @@ class CityContainer extends Component {
         .then( res => res.json())
         .then( res => {
             this.setState(res)
-            this.setState( {...this.state, custom: true } )
-            console.log(this.state)
+            this.setState( {...this.state, custom: false } )
         })
         // .catch(err => {
         //     this.setState( {hasError: true})
@@ -47,7 +46,7 @@ class CityContainer extends Component {
     }
 
     handleClickChangeWinner(event){
-        console.log('Current custom mode? ', String(this.state.custom))
+        // console.log('Current custom mode? ', String(this.state.custom))
         const currentState = (event.target.getAttribute('statename'));
 
         if (this.state.custom === true) {
@@ -118,7 +117,7 @@ class CityContainer extends Component {
 
             })
             .catch( err => {
-                console.log('get custom map broke down on CC-L112')
+                // console.log('get custom map broke down on CC-L112')
                 console.log(err)
             })
 
@@ -145,7 +144,6 @@ class CityContainer extends Component {
 
     //////////////////////////////////  LIFECYCLE METHODS //////////////////////////////////////
     componentDidMount(){
-        console.log('city container mounted')
         this.resetTheBoard()
     }
 
@@ -169,7 +167,7 @@ class CityContainer extends Component {
             }
         }
 
-        let customMode = String(this.state.custom)
+        // let customMode = String(this.state.custom)
 
         return ( 
             <div id='city_container'>
@@ -180,10 +178,10 @@ class CityContainer extends Component {
                         handlePostRequest={this.handlePostRequest}
                         handleImportRequest={this.handleImportRequest}
                         handleDeleteRequest={this.handleDeleteRequest}
+                        custom={this.state.custom}
                     />
                     <Scoreboard vote={this.state} />
                 </div>
-                <h1>Custom Mode: {customMode} </h1>
 
                 <div id='city_display'>
                     {this.state.hasError ? <div>Error occured while fetching the data</div> : stateArray}

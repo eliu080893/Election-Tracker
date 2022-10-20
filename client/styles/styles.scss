@@ -1,34 +1,134 @@
 body {
-    background: lightblue;
+    background-image: linear-gradient(to bottom right, rgb(210, 79, 79),white, rgb(42, 42, 190));
+}
+
+#title {
+    font-size: 4rem;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
 
 #info_bar {
-    border: 1px blue solid;
+    // border: 1px blue solid;
+    display: flex;
+    justify-content: space-between;
+    height: 300px;
+    min-width: 725px;
+    margin-bottom: 32px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 
     #buttonContainer{
-        display: inline;
-        background-color: aqua;
-
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        display: grid;
+        width: 50%;
+        grid-template-columns: 32px 1fr 1fr 1fr  1fr 1fr 32px;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            ". . . . . . ."
+            ". custom custom custom custom custom ."
+            ". . . . . . ."
+            ". input input input input input ."
+            ". . . . . . ."
+            ". save save . import import ."
+            ". . . . . . ."
+            ". reset reset . delete delete ."
+            ". . . . . . .";
+        
         button {
-            width: 100px;
-            height: 33px;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5rem;
+            font-size: 1rem;
         }
+
+        #customButton {
+            grid-area: custom;
+            font-size: 1.5rem;
+
+            button {
+                font-size: 2rem;
+                font-weight: bold;
+            }
+        }
+
+        #input_bar {
+            grid-area: input;
+            font-size: 1.5rem;
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+        #importButton {
+            grid-area: import;
+            font-size: 1.5rem;
+        }
+
+        #resetButton {
+            grid-area: reset;
+            font-size: 1.5rem;
+        }
+        #saveButton {
+            grid-area: save;
+            font-size: 1.5rem;
+        }
+
+        #deleteButton {
+            grid-area: delete;
+            font-size: 1.5rem;
+        }
+
     }
 
     #scoreboard_area {
-        background-color: lightcoral;
+        // background-color: lightcoral;
+        width: 45%;
+        overflow-y: scroll;
+        padding-top: 16px;
+        // border: 1px solid black;
 
         #score_comp {
-            h3 {
-                border: 1px solid black; 
-                color: black;
-            }
+
+            p { 
+                display: flex;
+                margin-top: 8px;
+                margin-bottom: 8px;
+                // background-color: red;
+
+                span {
+                    overflow: clip;
+                    position: relative;
+                    font-size: 1.2rem;
+                    border: 1px solid black; 
+                    border-radius: 0.5rem;
+                    color: black;
+                    background-color: lightcyan;
+                    height: 1.5rem;
+                    padding-left: 1rem;
+                    width: 50%;
+                    left: 15%;
+                }
+
+                #spanleft {
+                    border-right: none;
+                }
+
+                #spanscore {
+                    position: relative;
+                    text-align: right;
+                    padding-left: 0;
+                    width: 15%;
+                    right: 0;
+                    border-left: none;
+                }
+             }
         }
     }
 }
 
 #city_display {
-    background-color: beige;
+    // background-color: beige;
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;
@@ -37,13 +137,15 @@ body {
 .city {
     width: 100px;
     height: 100px;
-    border: red solid 1px;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    border: black solid 2px;
+    background-color: white;
+    border-radius: 0.5rem;
+    margin: 0.5rem 0.5rem;
     font-size: 2rem;
+    text-align: center;
 
     p {
-        font-size: 20px;
+        font-size: clamp(1rem, 1.2rem, 1.5rem);
         margin-top: 0px;
         margin-bottom: 0px;
     }
