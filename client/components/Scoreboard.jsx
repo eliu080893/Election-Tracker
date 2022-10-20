@@ -7,9 +7,20 @@ class Scoreboard extends Component {
 
     }
 
+    updateScoreboard() {
+
+    }
+
+    componentDidUpdate(){
+
+        // console.log('Scoreboard updated')
+
+    }
+
     componentDidMount() {
-        // alert('hi')
-        console.log('Scoreboard mounted')
+
+        // console.log('Scoreboard mounted')
+
     }
 
     render() {
@@ -18,21 +29,25 @@ class Scoreboard extends Component {
 
         let totalScores = {};
         for (let city in data) {
-            if (totalScores[city.winner] === undefined) {
-                totalScores[city.winner] = city.electoral_votes
-            } else {
-                totalScores[city.winner] += city.electoral_votes
+            if( city !== 'custom') {
+                if (totalScores[data[city].winner] === undefined) {
+                    totalScores[data[city].winner] = data[city].electoral_votes
+                } else {
+                    totalScores[data[city].winner] += data[city].electoral_votes
+                }
             }
+
         }
 
         let candidateArray = [];
         for (let key in totalScores) {
             candidateArray.push(<Score candidate={key} electoral_votes={totalScores[key]} key={key} />)
+            candidateArray.sort( (a,b) => (b.props.electoral_votes - a.props.electoral_votes));
         }
 
         return (
             <div>
-                hi
+                {candidateArray}
             </div>
         )
     }
