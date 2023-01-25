@@ -12,6 +12,10 @@ const customRouter = require(path.join(__dirname,'./routes/custom.js'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// While running in production, this serves the compiled Webpack file
+app.use(express.static(path.join(__dirname, '../dist/')));
+
+// While in development, this should just serve the index.html entry point file
 app.get('/', (req,res) => {
     return res.status(200).sendFile(path.join(__dirname,'../src/index.html'))
 })
