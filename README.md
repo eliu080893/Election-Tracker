@@ -1,6 +1,11 @@
 # Election-Tracker
 
-This application pulls the results of the 2020 Presidential Election from a NY times API, and then displays it on a SPA. It should be connected to an instance of a MongoDB database in order to serve the webpage properly. 
+This application pulls the results of the 2020 Presidential Election from a NY times API, and then displays it on a SPA. It should be connected to an instance of a MongoDB database in order to serve the webpage properly.
+
+## How to connect to MongoDB
+
+Your personal MongoDB database connection string should be copied and saved in the **.env** file under the variable name MONGO.
+Example : MONGO = 'your_personal_connection_string_here'
 
 ## How to Use
 If properly loaded, the page should contain a map of each U.S. state, as well as who won the electoral vote for that state. There is no interactivity with the basic map, unless you toggle **Custom Mode** to be on.
