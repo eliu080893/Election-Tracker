@@ -48,7 +48,7 @@ class City extends Component{
                 {this.props.stateId}
                 <p onClick={this.handleClick}>
                     <strong>{this.props.electoral_votes}</strong> - {this.props.winner}
-                    </p>
+                </p>
             </div>
         )
     }

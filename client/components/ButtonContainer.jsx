@@ -25,8 +25,10 @@ class ButtonContainer extends Component {
 
     resetState() {
         this.setState( (state) => {
-            return {value: 'test'}
+            return {value: ''}
         })
+        console.log('resetted the board')
+        document.getElementById('input_bar').value = ''
     }
 
     render() {
