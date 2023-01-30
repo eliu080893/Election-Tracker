@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 
+type Props = {
+    handleClick: React.MouseEventHandler<HTMLButtonElement>
+}
 
-class DeleteButton extends Component {
-    constructor(props: any) {
+class DeleteButton extends Component<Props> {
+    constructor(props: Props) {
         super(props)
     }
 
