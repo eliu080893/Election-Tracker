@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import Button from './buttons/Button.jsx';
 import Reset from './buttons/Reset.jsx';
 import SaveButton from './buttons/SaveButton.jsx';
-import DeleteButton from './buttons/DeleteButton.jsx';
+import DeleteButton from './buttons/DeleteButton.tsx';
 import ImportButton from './buttons/ImportButton.jsx';
 
 class ButtonContainer extends Component {

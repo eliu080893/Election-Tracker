@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 
 
 class DeleteButton extends Component {
-    constructor(props) {
+    constructor(props: any) {
         super(props)
-
     }
 
     render() {
