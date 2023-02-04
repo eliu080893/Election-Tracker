@@ -93,14 +93,20 @@ voteController.postMap = async (req, res, next) => {
     console.log(req.body.name);
 
     try {
-        let dbResponse = await Vote.create(incomingData)
+        // let dbResponse = await Vote.create(incomingData)
+        let dbResponse = await Vote.update(
+            {'name': req.body.name},
+            incomingData,
+            {
+                upsert: true
+            });
         res.locals.postResponse = dbResponse;
         res.locals.name = req.body.name;
         return next()
     }
     catch(err) {
         return next({
-            log:'Error in voteController.postVotes. Cannot create your map into mongo DB database',
+            log:'Error in voteController.postMaps. Cannot create your map into mongo DB database',
             message: {err: err}
         })
     }

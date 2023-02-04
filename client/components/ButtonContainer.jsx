@@ -27,8 +27,7 @@ class ButtonContainer extends Component {
         this.setState( (state) => {
             return {value: ''}
         })
-        console.log('resetted the board')
-        document.getElementById('input_bar').value = ''
+        console.log('resetted the board') 
     }
 
     render() {
@@ -41,7 +40,7 @@ class ButtonContainer extends Component {
                     custom={this.props.custom}/>
                 </div>
 
-                <input type='text' onChange={this.onChange} placeholder="Name your custom map!" id="input_bar"/>
+                <input type='text' onChange={this.onChange} placeholder="Name your custom map!" id="input_bar" value={this.state.value}/>
 
                 <div id='resetButton'>
                     <Reset handleClick={ () => {

@@ -16,7 +16,7 @@ mongoose.connect(MONGO_URI, {
 const Schema = mongoose.Schema;
    
 const voteSchema = new Schema({
-    name: {type: String, required: true, unique: true},
+    name: {type: String, required: true, unique: false},
     state: {type: {}, required: true}
 });
 
