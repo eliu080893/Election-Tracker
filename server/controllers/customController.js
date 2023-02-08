@@ -6,8 +6,6 @@ const customController = {};
 
 const Vote = require('../models/electionModels.js');
 
-let dataURL = "https://static01.nyt.com/elections-assets/2020/data/api/2020-11-03/national-map-page/national/president.json"
-
 customController.getCustomMap = async (req, res, next) => {
 
     let incoming = req.query.name
