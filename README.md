@@ -21,3 +21,4 @@ You can also choose to save your custom map while you are in **Custom Mode**. An
 - **Delete Custom Map** : Delete your custom map, using the input name, from your MongoDB instance.
 
 ## Demo of the application
+![Demo](https://github.com/eliu080893/Election-Tracker/blob/master/assets/DemoGIF.gif)
