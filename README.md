@@ -19,3 +19,5 @@ You can also choose to save your custom map while you are in **Custom Mode**. An
 - **Load Custom Map** : Load your custom map, using the input name, from your MongoDB instance.
 - **Reset the Map** : Reset the map to the original state.
 - **Delete Custom Map** : Delete your custom map, using the input name, from your MongoDB instance.
+
+## Demo of the application
